@@ -10,7 +10,9 @@ and EUR-denominated EBITDA.
 - `rates.py` — live ECB reference rates from the ECB Data API, requested as SDMX-JSON
   `application/vnd.sdmx.data+json;version=1.0.0-wd`, with TARGET business-day fallback.
 - `app.py` — thin Streamlit app; shows today's EUR/USD ECB reference rate and its
-  observation date.
+  observation date, takes manual debt / cash / EBITDA / covenant-limit inputs, and
+  displays the illustrative covenant check (debt stack, net debt, leverage vs limit,
+  headroom) computed by `calc.covenant_check` at the fetched rate. No maths in the app.
 - `test_calc.py`, `test_rates.py` — pytest suite. `test_rates.py` also parses a real,
   unmodified ECB response saved in `fixtures/`.
 - `.github/workflows/pytest.yml` — runs the full pytest suite on every pull request.
