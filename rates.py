@@ -14,7 +14,7 @@ import urllib.error
 import urllib.request
 
 ECB_DATA_API = "https://data-api.ecb.europa.eu/service/data/EXR"
-ACCEPT_SDMX_JSON = "application/vnd.sdmx.data+json;version=2.0.0"
+ACCEPT_SDMX_JSON = "application/vnd.sdmx.data+json;version=1.0.0-wd"
 LOOKBACK_DAYS = 31
 CURRENCY_RE = re.compile(r"^[A-Za-z]{3}$")
 
@@ -42,7 +42,7 @@ def _http_get_json(url):
 
 
 def _parse_observations(payload):
-    """Extract {TIME_PERIOD string: rate} from an SDMX-JSON payload (v1 or v2 shape)."""
+    """Extract {TIME_PERIOD string: rate} from an SDMX-JSON payload (1.0.0-wd or 2.0 shape)."""
     observations = {}
     for data_set in payload.get("dataSets") or []:
         for series in (data_set.get("series") or {}).values():
